@@ -24,7 +24,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.kosmasfn.movie.ui.component.ItemMovieCard
 import com.kosmasfn.movie.ui.genre.GenreViewModel
-import com.kosmasfn.movie.util.showMessage
+import com.kosmasfn.movie.utils.showMessage
 
 @Composable
 fun MovieListScreenItem(viewModel: GenreViewModel, genre: String) {

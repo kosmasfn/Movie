@@ -6,7 +6,7 @@ import com.kosmasfn.movie.data.mapper.toDomainModel
 import com.kosmasfn.movie.domain.model.GenreDomainModel
 import com.kosmasfn.movie.domain.model.MovieDomainModel
 import com.kosmasfn.movie.domain.model.TrailerDomainModel
-import com.kosmasfn.movie.util.replaceURL
+import com.kosmasfn.movie.utils.replaceURL
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

@@ -29,7 +29,7 @@ import com.kosmasfn.movie.ui.component.Loading
 import com.kosmasfn.movie.ui.component.TrailersEmptyStateView
 import com.kosmasfn.movie.ui.component.YoutubeVideoPlayer
 import com.kosmasfn.movie.ui.model.MovieUIModel
-import com.kosmasfn.movie.util.formatDate
+import com.kosmasfn.movie.utils.formatDate
 
 @Composable
 fun DetailContent(

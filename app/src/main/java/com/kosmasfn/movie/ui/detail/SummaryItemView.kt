@@ -15,7 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.kosmasfn.movie.R
 import com.kosmasfn.movie.ui.component.CustomText
-import com.kosmasfn.movie.util.formatDate
+import com.kosmasfn.movie.utils.formatDate
 
 @Composable
 fun SummaryItemView(voteAverage: Double, voteCount: Int, releaseDate: String, originalLanguage: String) {
