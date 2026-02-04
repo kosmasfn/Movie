@@ -2,6 +2,7 @@ package com.kosmasfn.movie.data.network.service
 
 import com.kosmasfn.movie.data.model.GenreDataModel
 import com.kosmasfn.movie.data.model.MovieDataModel
+import com.kosmasfn.movie.data.model.ReviewDataModel
 import com.kosmasfn.movie.data.model.TrailerDataModel
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -20,5 +21,11 @@ interface APIService {
 
     @GET("movie/{movie_id}/videos")
     suspend fun fetchTrailerMovie(@Path("movie_id") movieId: Int): TrailerDataModel
+
+    @GET("movie/{movie_id}/reviews")
+    suspend fun fetchReviews(
+        @Path("movie_id") movieId: Int,
+        @Query("page") page: Int,
+    ): ReviewDataModel
 
 }

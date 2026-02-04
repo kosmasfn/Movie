@@ -2,9 +2,11 @@ package com.kosmasfn.movie.data.mapper
 
 import com.kosmasfn.movie.data.model.GenreDataModel
 import com.kosmasfn.movie.data.model.MovieDataModel
+import com.kosmasfn.movie.data.model.ReviewDataModel
 import com.kosmasfn.movie.data.model.TrailerDataModel
 import com.kosmasfn.movie.domain.model.GenreDomainModel
 import com.kosmasfn.movie.domain.model.MovieDomainModel
+import com.kosmasfn.movie.domain.model.ReviewDomainModel
 import com.kosmasfn.movie.domain.model.TrailerDomainModel
 
 fun GenreDataModel.toDomainModel(): GenreDomainModel =
@@ -49,4 +51,33 @@ fun TrailerDataModel.TrailerItemDataModel.toDomainModel(): TrailerDomainModel.Tr
     TrailerDomainModel.TrailerItemDomainModel(
         this.key ?: "",
         this.type ?: "",
+    )
+
+fun ReviewDataModel.toDomainModel(): ReviewDomainModel = ReviewDomainModel(
+    id = this.id ?: 0,
+    page = this.page ?: 0,
+    results = this.results?.map { it.toDomainModel() } ?: listOf(),
+    totalPages = this.totalPages ?: 0,
+    totalResults = this.totalResults ?: 0,
+)
+
+fun ReviewDataModel.ReviewItemDataModel.toDomainModel(): ReviewDomainModel.ReviewItemDomainModel =
+    ReviewDomainModel.ReviewItemDomainModel(
+        id = this.id ?: "",
+        author = this.author ?: "",
+        authorDetails = this.authorDetails?.toDomainModel()
+            ?: ReviewDomainModel.AuthorDetailsDomainModel(),
+        content = this.content ?: "",
+        createdAt = this.createdAt ?: "",
+        updatedAt = this.updatedAt ?: "",
+        url = this.url ?: "",
+    )
+
+
+fun ReviewDataModel.AuthorDetailsDataModel.toDomainModel(): ReviewDomainModel.AuthorDetailsDomainModel =
+    ReviewDomainModel.AuthorDetailsDomainModel(
+        avatarPath = this.avatarPath ?: "",
+        name = this.name ?: "",
+        rating = this.rating ?: 0,
+        username = this.username ?: "",
     )

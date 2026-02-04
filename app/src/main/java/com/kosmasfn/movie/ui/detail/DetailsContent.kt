@@ -1,6 +1,5 @@
 package com.kosmasfn.movie.ui.detail
 
-import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -35,7 +34,7 @@ import com.kosmasfn.movie.utils.formatDate
 fun DetailContent(
     paddingValues: PaddingValues,
     movie: MovieUIModel.MovieItemUIModel,
-    viewModel: TrailerViewModel = hiltViewModel()
+    viewModel: DetailsViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     viewModel.fetchTrailerMovie(movie.id)
