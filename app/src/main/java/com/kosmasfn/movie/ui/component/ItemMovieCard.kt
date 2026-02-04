@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.kosmasfn.movie.BuildConfig
+import com.kosmasfn.movie.ui.detail.DetailActivity
 import com.kosmasfn.movie.ui.model.MovieUIModel
 
 @Composable
@@ -37,6 +38,7 @@ fun ItemMovieCard(
         ),
         shape = RoundedCornerShape(4.dp),
         onClick = {
+            DetailActivity.launchIntent(context, item)
         }
     ) {
         Column(
