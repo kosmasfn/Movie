@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
@@ -13,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -29,8 +27,7 @@ fun ItemMovieCard(
 ) {
     ElevatedCard(
         modifier = Modifier
-            .padding(4.dp)
-            .testTag("movie_card_${item.id}"),
+            .padding(4.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
         ),
@@ -50,9 +47,7 @@ fun ItemMovieCard(
                 BuildConfig.POSTER_BASE_URL + item.posterPath
             )
             Text(
-                modifier = Modifier
-                    .padding(horizontal = 2.dp, vertical = 2.dp)
-                    .testTag("movie_title_${item.id}"),
+                modifier = Modifier.padding(horizontal = 2.dp, vertical = 2.dp),
                 text = item.title,
                 textAlign = TextAlign.Start,
                 fontWeight = FontWeight.Bold,

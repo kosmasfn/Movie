@@ -17,7 +17,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -46,7 +45,7 @@ fun DetailContent(
 
     val movieItem by remember { mutableStateOf(movie) }
 
-    Box(modifier = Modifier.testTag("detail_screen")) {
+    Box {
         ImageCustomView(
             context,
             Modifier,

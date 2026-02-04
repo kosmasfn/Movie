@@ -20,7 +20,6 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.kosmasfn.movie.ui.component.ItemMovieCard
 import com.kosmasfn.movie.ui.genre.GenreViewModel
@@ -49,7 +48,7 @@ fun MovieListScreenItem(viewModel: GenreViewModel, genre: String) {
     }
 
     LazyVerticalGrid(
-        modifier = Modifier.fillMaxSize().testTag("popular_movie_list"),
+        modifier = Modifier.fillMaxSize(),
         columns = GridCells.Fixed(2),
         state = gridState,
     ) {
