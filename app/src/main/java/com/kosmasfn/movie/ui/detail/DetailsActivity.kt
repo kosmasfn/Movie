@@ -15,7 +15,7 @@ import com.kosmasfn.movie.ui.theme.MovieTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailActivity : ComponentActivity() {
+class DetailsActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,6 @@ class DetailActivity : ComponentActivity() {
                         TopBar { finish() }
                     }) { innerPadding ->
                     DetailContent(
-                        this@DetailActivity,
                         innerPadding,
                         getData()
                     )
@@ -54,7 +53,7 @@ class DetailActivity : ComponentActivity() {
             context: Context,
             movie: MovieUIModel.MovieItemUIModel
         ) {
-            val intent = Intent(context, DetailActivity::class.java)
+            val intent = Intent(context, DetailsActivity::class.java)
             val bundle = Bundle()
             bundle.putSerializable(MOVIE_ITEM_BUNDLE, movie)
             intent.putExtras(bundle)

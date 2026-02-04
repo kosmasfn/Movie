@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -32,11 +33,11 @@ import com.kosmasfn.movie.utils.formatDate
 
 @Composable
 fun DetailContent(
-    context: Context,
     paddingValues: PaddingValues,
     movie: MovieUIModel.MovieItemUIModel,
     viewModel: TrailerViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
     viewModel.fetchTrailerMovie(movie.id)
 
     val isLoading by viewModel.isLoading.collectAsState(initial = false)
