@@ -5,16 +5,26 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
@@ -27,6 +37,8 @@ import com.kosmasfn.movie.ui.component.ImageCustomView
 import com.kosmasfn.movie.ui.component.Loading
 import com.kosmasfn.movie.ui.component.TrailersEmptyStateView
 import com.kosmasfn.movie.ui.component.YoutubeVideoPlayer
+import com.kosmasfn.movie.ui.details.review.LoadingFooter
+import com.kosmasfn.movie.ui.details.review.ReviewCard
 import com.kosmasfn.movie.ui.model.MovieUIModel
 import com.kosmasfn.movie.utils.formatDate
 
@@ -43,14 +55,37 @@ fun DetailContent(
     val errorMessage by viewModel.errorMessage.collectAsState(initial = "")
     val trailerId by viewModel.trailerId.collectAsState("")
 
+    val isLoadingReviews by viewModel.isLoadingReviews.collectAsState(initial = false)
+    val errorMessageReviews by viewModel.errorMessageReviews.collectAsState(initial = "")
+    val reviews by viewModel.reviews.collectAsState()
+    val totalPages by viewModel.totalPages.collectAsState(Integer.MAX_VALUE)
+
     val movieItem by remember { mutableStateOf(movie) }
+
+    val listState = rememberLazyListState()
+    var page by remember { mutableIntStateOf(1) }
+
+    LaunchedEffect(Unit) {
+        viewModel.fetchReviews(movie.id, page)
+    }
+
+    LaunchedEffect(listState, reviews.size) {
+        snapshotFlow {
+            val lastVisible = listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
+            val total = listState.layoutInfo.totalItemsCount
+            lastVisible to total
+        }.collect { (lastVisible, totalItems) ->
+            if (lastVisible != null && lastVisible >= totalItems - 3 && !isLoading) {
+                page++
+                if (page > totalPages) return@collect
+                viewModel.fetchReviews(movie.id, page)
+            }
+        }
+    }
 
     Box {
         ImageCustomView(
-            context,
-            Modifier,
-            BuildConfig.POSTER_BASE_URL + movie.backdropPath,
-            true
+            context, Modifier, BuildConfig.POSTER_BASE_URL + movie.backdropPath, true
         )
         LazyColumn(
             modifier = Modifier.padding(start = 20.dp, end = 20.dp)
@@ -84,10 +119,11 @@ fun DetailContent(
                     }
                 }
                 OverviewItemView(movieItem.overview)
+            }
+
+            item {
                 Text(
-                    modifier = Modifier.padding(top = 40.dp),
-                    text = "Trailers",
-                    fontSize = 26.sp
+                    modifier = Modifier.padding(top = 40.dp), text = "Trailers", fontSize = 26.sp
                 )
                 if (isLoading) Loading()
                 if (trailerId.isNotEmpty()) {
@@ -95,6 +131,31 @@ fun DetailContent(
                 } else {
                     TrailersEmptyStateView()
                 }
+            }
+
+            item {
+                Text(
+                    modifier = Modifier.padding(top = 40.dp), text = "Reviews", fontSize = 26.sp
+                )
+                HorizontalDivider()
+            }
+
+            if (reviews.isEmpty()) {
+                item {
+                    Spacer(Modifier.height(8.dp))
+                    Text("No reviews yet ....")
+                }
+            }
+
+            items(reviews.size) { index ->
+                ReviewCard(reviews[index])
+            }
+
+            if (isLoadingReviews) item {
+                LoadingFooter()
+            }
+
+            item {
                 Spacer(modifier = Modifier.height(100.dp))
             }
         }

@@ -21,7 +21,7 @@ import com.kosmasfn.movie.ui.genre.GenreTabs
 import com.kosmasfn.movie.ui.movie.MovieListScreen
 
 @Composable
-fun GenreWithMovieScreen(
+fun MainScreen(
     paddingValues: PaddingValues,
     viewModel: GenreViewModel = hiltViewModel()
 ) {

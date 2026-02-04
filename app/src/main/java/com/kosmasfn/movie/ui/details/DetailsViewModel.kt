@@ -27,6 +27,12 @@ class DetailsViewModel @Inject constructor(
     private val _trailerId = MutableStateFlow("")
     val trailerId: Flow<String> = _trailerId
 
+    private val _isLoadingReviews = MutableStateFlow(false)
+    val isLoadingReviews: Flow<Boolean> = _isLoadingReviews
+
+    private val _errorMessageReviews = MutableStateFlow("")
+    val errorMessageReviews: Flow<String> = _errorMessageReviews
+
     val _reviews = MutableStateFlow<List<ReviewUIModel.ReviewItemUIModel>>(emptyList())
     val reviews: StateFlow<List<ReviewUIModel.ReviewItemUIModel>> = _reviews
 
@@ -65,7 +71,7 @@ class DetailsViewModel @Inject constructor(
             userCase.fetchReviews(movieId, page).collect {
                 when (it.status) {
                     Resource.Status.LOADING -> {
-                        _isLoading.value = true
+                        _isLoadingReviews.value = true
                     }
 
                     Resource.Status.SUCCESS -> {
@@ -74,12 +80,12 @@ class DetailsViewModel @Inject constructor(
                             _reviews.value += items.results.map { data -> data.toUIModel() }
                             _totalPages.value = items.totalPages
                         }
-                        _isLoading.value = false
+                        _isLoadingReviews.value = false
                     }
 
                     Resource.Status.ERROR -> {
-                        _isLoading.value = false
-                        _errorMessage.value = it.error?.data?.message ?: "Unknown Error"
+                        _isLoadingReviews.value = false
+                        _errorMessageReviews.value = it.error?.data?.message ?: "Unknown Error"
                     }
                 }
             }

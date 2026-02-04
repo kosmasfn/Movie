@@ -26,7 +26,7 @@ import com.kosmasfn.movie.ui.genre.GenreViewModel
 import com.kosmasfn.movie.utils.showMessage
 
 @Composable
-fun MovieListScreenItem(viewModel: GenreViewModel, genre: String) {
+fun MovieListItemScreen(viewModel: GenreViewModel, genre: String) {
 
     val context = LocalContext.current
     val isLoading by viewModel.isLoading.collectAsState(initial = false)

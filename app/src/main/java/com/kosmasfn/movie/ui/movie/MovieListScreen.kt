@@ -55,7 +55,7 @@ fun MovieListScreen(
     }
 
     Box(modifier = Modifier.pullRefresh(pullRefreshState)) {
-        MovieListScreenItem(viewModel, genre)
+        MovieListItemScreen(viewModel, genre)
 
         PullRefreshIndicator(
             refreshing = isRefreshing,

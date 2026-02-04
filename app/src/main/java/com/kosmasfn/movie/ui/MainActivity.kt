@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MovieTheme {
                 Scaffold{paddingValues ->
-                    GenreWithMovieScreen(paddingValues)
+                    MainScreen(paddingValues)
                 }
             }
         }
