@@ -101,6 +101,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material)
 
     implementation(libs.adapter.rxjava2)
     implementation(libs.converter.gson)
@@ -111,8 +112,13 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.lottie.compose)
+    implementation(libs.coil.compose)
+
     testImplementation (libs.kotlinx.coroutines.test)
     testImplementation (libs.junit)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
