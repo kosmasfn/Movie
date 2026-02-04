@@ -1,6 +1,7 @@
 package com.kosmasfn.movie.ui
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +22,7 @@ import com.kosmasfn.movie.ui.movie.MovieListScreen
 
 @Composable
 fun GenreWithMovieScreen(
+    paddingValues: PaddingValues,
     viewModel: GenreViewModel = hiltViewModel()
 ) {
     val genreState by viewModel.genre.collectAsState()
@@ -42,7 +44,7 @@ fun GenreWithMovieScreen(
         }
     }
 
-    Column {
+    Column(modifier = Modifier.padding(paddingValues)) {
         if (genreState.genres.isNotEmpty()) {
             GenreTabs(
                 genres = genreState.genres.map { it.name },
