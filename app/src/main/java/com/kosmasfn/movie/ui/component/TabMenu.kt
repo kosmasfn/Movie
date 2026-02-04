@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.kosmasfn.movie.ui.genre.GenreViewModel
-import com.kosmasfn.movie.ui.genre.MovieListScreen
 import com.kosmasfn.movie.ui.genre.GenreTabs
+import com.kosmasfn.movie.ui.movie.MovieListScreen
 
 @Composable
 fun TabMenu(
@@ -49,12 +49,7 @@ fun TabMenu(
                 selectedIndex = selectedTabIndex,
                 onTabSelected = { selectedTabIndex = it }
             )
-
-            MovieListScreen(
-                movies = movies,
-                genreName = genreState.genres[selectedTabIndex].name,
-                onMovieClick = {}
-            )
+            MovieListScreen(genre = genreState.genres[selectedTabIndex].id.toString())
         }
 
         if (isLoading) Loading()
