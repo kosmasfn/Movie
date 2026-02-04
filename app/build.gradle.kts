@@ -115,6 +115,7 @@ dependencies {
 
     implementation(libs.lottie.compose)
     implementation(libs.coil.compose)
+    implementation(libs.androidyoutubeplayer.core)
 
     testImplementation (libs.kotlinx.coroutines.test)
     testImplementation (libs.junit)
