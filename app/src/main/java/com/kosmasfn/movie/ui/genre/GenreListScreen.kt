@@ -27,7 +27,7 @@ fun GenreListScreen(
     viewModel.fetchGenres()
     val isLoading by viewModel.isLoading.collectAsState(initial = false)
     val errorMessage by viewModel.errorMessage.collectAsState(initial = "")
-    val genres by viewModel.genres.collectAsState()
+    val genre by viewModel.genre.collectAsState()
 
     Column(
         modifier = Modifier
@@ -44,10 +44,10 @@ fun GenreListScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            items(genres.genres.size) { index ->
+            items(genre.genres.size) { index ->
                 GenreChip(
-                    genre = genres.genres[index],
-                    onClick = { onGenreClick(genres.genres[index]) })
+                    genre = genre.genres[index],
+                    onClick = { onGenreClick(genre.genres[index]) })
             }
         }
     }

@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.kosmasfn.movie.ui.component.TabMenu
 import com.kosmasfn.movie.ui.genre.GenreListScreen
 
 @Composable
@@ -26,9 +27,10 @@ fun NavigationBar(
             modifier = Modifier.padding(paddingValues = paddingValues)
         ) {
             composable(Screens.Genre.route) {
-                GenreListScreen { genre ->
-                    navController.navigate("movies/${genre.id}/${genre.name}")
-                }
+                TabMenu()
+//                GenreListScreen { genre ->
+//                    navController.navigate("movies/${genre.id}/${genre.name}")
+//                }
             }
         }
     }
