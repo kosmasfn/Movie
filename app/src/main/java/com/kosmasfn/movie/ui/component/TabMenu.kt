@@ -57,12 +57,7 @@ fun TabMenu(
             )
         }
 
-        if (isLoading) {
-            Text(
-                text = "Loading...",
-                modifier = Modifier.padding(16.dp)
-            )
-        }
+        if (isLoading) Loading()
 
         if (errorMessage.isNotEmpty()) {
             Text(
