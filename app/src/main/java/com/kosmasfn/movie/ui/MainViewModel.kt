@@ -1,4 +1,4 @@
-package com.kosmasfn.movie.ui.genre
+package com.kosmasfn.movie.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-open class GenreViewModel @Inject constructor(
+open class MainViewModel @Inject constructor(
     private val userCase: UseCase,
 ) : ViewModel() {
 

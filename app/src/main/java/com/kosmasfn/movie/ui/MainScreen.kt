@@ -16,14 +16,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.kosmasfn.movie.ui.component.Loading
-import com.kosmasfn.movie.ui.genre.GenreViewModel
 import com.kosmasfn.movie.ui.genre.GenreTabs
 import com.kosmasfn.movie.ui.movie.MovieListScreen
 
 @Composable
 fun MainScreen(
     paddingValues: PaddingValues,
-    viewModel: GenreViewModel = hiltViewModel()
+    viewModel: MainViewModel = hiltViewModel()
 ) {
     val genreState by viewModel.genre.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState(false)
