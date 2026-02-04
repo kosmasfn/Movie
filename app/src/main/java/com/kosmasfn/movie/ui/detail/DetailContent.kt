@@ -85,6 +85,11 @@ fun DetailContent(
                     }
                 }
                 OverviewItemView(movieItem.overview)
+                Text(
+                    modifier = Modifier.padding(top = 40.dp),
+                    text = "Trailers",
+                    fontSize = 26.sp
+                )
                 if (isLoading) Loading()
                 if (trailerId.isNotEmpty()) {
                     YoutubeVideoPlayer(trailerId)
