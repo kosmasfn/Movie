@@ -1,4 +1,4 @@
-package com.kosmasfn.movie.ui.detail
+package com.kosmasfn.movie.ui.details
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.kosmasfn.movie.BuildConfig
-import com.kosmasfn.movie.ui.detail.DetailsActivity
+import com.kosmasfn.movie.ui.details.DetailsActivity
 import com.kosmasfn.movie.ui.model.MovieUIModel
 
 @Composable

@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".ui.detail.DetailsActivity"
+            android:name=".ui.details.DetailsActivity"
             android:exported="true"
             android:theme="@style/Theme.Movie">
         </activity>

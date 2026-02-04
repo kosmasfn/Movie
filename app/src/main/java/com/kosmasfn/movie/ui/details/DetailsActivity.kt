@@ -1,4 +1,4 @@
-package com.kosmasfn.movie.ui.detail
+package com.kosmasfn.movie.ui.details
 
 import android.content.Context
 import android.content.Intent

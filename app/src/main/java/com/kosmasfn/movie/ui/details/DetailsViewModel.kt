@@ -1,11 +1,10 @@
-package com.kosmasfn.movie.ui.detail
+package com.kosmasfn.movie.ui.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kosmasfn.movie.domain.common.Resource
 import com.kosmasfn.movie.domain.usecase.UseCase
 import com.kosmasfn.movie.ui.mapper.toUIModel
-import com.kosmasfn.movie.ui.model.MovieUIModel
 import com.kosmasfn.movie.ui.model.ReviewUIModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow

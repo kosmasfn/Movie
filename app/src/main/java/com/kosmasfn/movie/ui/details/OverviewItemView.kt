@@ -1,4 +1,4 @@
-package com.kosmasfn.movie.ui.detail
+package com.kosmasfn.movie.ui.details
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
