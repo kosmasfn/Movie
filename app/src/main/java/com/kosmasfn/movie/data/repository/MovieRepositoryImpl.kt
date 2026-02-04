@@ -3,6 +3,7 @@ package com.kosmasfn.movie.data.repository
 import android.content.Context
 import com.kosmasfn.movie.data.model.GenreDataModel
 import com.kosmasfn.movie.data.model.MovieDataModel
+import com.kosmasfn.movie.data.model.TrailerDataModel
 import com.kosmasfn.movie.data.network.service.APIService
 import javax.inject.Inject
 
@@ -17,5 +18,9 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun fetchMoviesByGenre(page: Int, genre: String): MovieDataModel {
         return apiService.fetchMovieByGenre(page, genre)
+    }
+
+    override suspend fun fetchTrailerMovie(movieId: Int): TrailerDataModel {
+        return apiService.fetchTrailerMovie(movieId)
     }
 }
