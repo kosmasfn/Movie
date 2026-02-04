@@ -1,6 +1,7 @@
-package com.kosmasfn.movie.ui.component
+package com.kosmasfn.movie.ui
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,16 +15,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.kosmasfn.movie.ui.genre.GenreViewModel
+import com.kosmasfn.movie.ui.component.Loading
 import com.kosmasfn.movie.ui.genre.GenreTabs
 import com.kosmasfn.movie.ui.movie.MovieListScreen
 
 @Composable
-fun TabMenu(
-    viewModel: GenreViewModel = hiltViewModel()
+fun MainScreen(
+    paddingValues: PaddingValues,
+    viewModel: MainViewModel = hiltViewModel()
 ) {
     val genreState by viewModel.genre.collectAsState()
-    val movies by viewModel.movies.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState(false)
     val errorMessage by viewModel.errorMessage.collectAsState("")
 
@@ -42,7 +43,7 @@ fun TabMenu(
         }
     }
 
-    Column {
+    Column(modifier = Modifier.padding(paddingValues)) {
         if (genreState.genres.isNotEmpty()) {
             GenreTabs(
                 genres = genreState.genres.map { it.name },

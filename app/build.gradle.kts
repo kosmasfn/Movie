@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
-    id("org.jetbrains.kotlin.plugin.serialization")
+    id("org.jetbrains.kotlin.plugin.serialization") apply true
 }
 
 android {
@@ -115,6 +115,7 @@ dependencies {
 
     implementation(libs.lottie.compose)
     implementation(libs.coil.compose)
+    implementation(libs.androidyoutubeplayer.core)
 
     testImplementation (libs.kotlinx.coroutines.test)
     testImplementation (libs.junit)

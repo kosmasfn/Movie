@@ -1,12 +1,11 @@
-package com.kosmasfn.movie.ui.genre
+package com.kosmasfn.movie.ui.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kosmasfn.movie.domain.common.Resource
 import com.kosmasfn.movie.domain.usecase.UseCase
 import com.kosmasfn.movie.ui.mapper.toUIModel
-import com.kosmasfn.movie.ui.model.GenreUIModel
-import com.kosmasfn.movie.ui.model.MovieUIModel
+import com.kosmasfn.movie.ui.model.ReviewUIModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-open class GenreViewModel @Inject constructor(
+class DetailsViewModel @Inject constructor(
     private val userCase: UseCase,
 ) : ViewModel() {
 
@@ -25,41 +24,24 @@ open class GenreViewModel @Inject constructor(
     private val _errorMessage = MutableStateFlow("")
     val errorMessage: Flow<String> = _errorMessage
 
-    val _genre = MutableStateFlow(GenreUIModel())
-    val genre: StateFlow<GenreUIModel> = _genre
+    private val _trailerId = MutableStateFlow("")
+    val trailerId: Flow<String> = _trailerId
 
-    val _movies = MutableStateFlow<List<MovieUIModel.MovieItemUIModel>>(emptyList())
-    val movies: StateFlow<List<MovieUIModel.MovieItemUIModel>> = _movies
+    private val _isLoadingReviews = MutableStateFlow(false)
+    val isLoadingReviews: Flow<Boolean> = _isLoadingReviews
+
+    private val _errorMessageReviews = MutableStateFlow("")
+    val errorMessageReviews: Flow<String> = _errorMessageReviews
+
+    val _reviews = MutableStateFlow<List<ReviewUIModel.ReviewItemUIModel>>(emptyList())
+    val reviews: StateFlow<List<ReviewUIModel.ReviewItemUIModel>> = _reviews
 
     private val _totalPages = MutableStateFlow(Integer.MAX_VALUE)
     val totalPages: Flow<Int> = _totalPages
 
-    fun fetchGenres() {
+    fun fetchTrailerMovie(movieId: Int) {
         viewModelScope.launch {
-            userCase.fetchGenres().collect {
-                when (it.status) {
-                    Resource.Status.LOADING -> {
-                        _isLoading.value = true
-                    }
-
-                    Resource.Status.SUCCESS -> {
-                        it.data?.let { data ->
-                            _genre.value = data.toUIModel()
-                        }
-                        _isLoading.value = false
-                    }
-
-                    Resource.Status.ERROR -> {
-                        _isLoading.value = false
-                    }
-                }
-            }
-        }
-    }
-
-    fun fetchMoviesByGenre(page: Int, genre: String) {
-        viewModelScope.launch {
-            userCase.fetchMoviesByGenre(page, genre).collect {
+            userCase.fetchTrailerMovie(movieId).collect {
                 when (it.status) {
                     Resource.Status.LOADING -> {
                         _isLoading.value = true
@@ -67,9 +49,10 @@ open class GenreViewModel @Inject constructor(
 
                     Resource.Status.SUCCESS -> {
                         it.data?.let { items ->
-                            if (page == 1) _movies.value = emptyList()
-                            _movies.value += items.results.map { data -> data.toUIModel() }
-                            _totalPages.value = items.totalPages
+                            items.results.filter { result -> result.type == "Trailer" }
+                                .map { data ->
+                                    _trailerId.value = data.key
+                                }
                         }
                         _isLoading.value = false
                     }
@@ -77,6 +60,32 @@ open class GenreViewModel @Inject constructor(
                     Resource.Status.ERROR -> {
                         _isLoading.value = false
                         _errorMessage.value = it.error?.data?.message ?: "Unknown Error"
+                    }
+                }
+            }
+        }
+    }
+
+    fun fetchReviews(movieId: Int, page: Int) {
+        viewModelScope.launch {
+            userCase.fetchReviews(movieId, page).collect {
+                when (it.status) {
+                    Resource.Status.LOADING -> {
+                        _isLoadingReviews.value = true
+                    }
+
+                    Resource.Status.SUCCESS -> {
+                        it.data?.let { items ->
+                            if (page == 1) _reviews.value = emptyList()
+                            _reviews.value += items.results.map { data -> data.toUIModel() }
+                            _totalPages.value = items.totalPages
+                        }
+                        _isLoadingReviews.value = false
+                    }
+
+                    Resource.Status.ERROR -> {
+                        _isLoadingReviews.value = false
+                        _errorMessageReviews.value = it.error?.data?.message ?: "Unknown Error"
                     }
                 }
             }

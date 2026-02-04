@@ -19,12 +19,12 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import com.kosmasfn.movie.ui.genre.GenreViewModel
+import com.kosmasfn.movie.ui.MainViewModel
 
 @Composable
 fun MovieListScreen(
     genre: String,
-    viewModel: GenreViewModel = hiltViewModel()
+    viewModel: MainViewModel = hiltViewModel()
 ) {
 
     viewModel.fetchMoviesByGenre(1, genre)
@@ -55,7 +55,7 @@ fun MovieListScreen(
     }
 
     Box(modifier = Modifier.pullRefresh(pullRefreshState)) {
-        MovieListScreenItem(viewModel, genre)
+        MovieListItemScreen(viewModel, genre)
 
         PullRefreshIndicator(
             refreshing = isRefreshing,
