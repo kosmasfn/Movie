@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -21,12 +23,61 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    val properties = Properties()
+    properties.load(project.rootProject.file("gradle.properties").inputStream())
+
     buildTypes {
+        debug {
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField(
+                "String",
+                "API_BASE_URL",
+                "\"${properties.getProperty("API_BASE_URL")}\""
+            )
+            buildConfigField(
+                "String",
+                "BEARER_TOKEN",
+                "\"${properties.getProperty("BEARER_TOKEN")}\""
+            )
+            buildConfigField(
+                "String",
+                "POSTER_BASE_URL",
+                "\"${properties.getProperty("POSTER_BASE_URL")}\""
+            )
+            buildConfigField(
+                "String",
+                "ACCOUNT_ID",
+                "\"${properties.getProperty("ACCOUNT_ID")}\""
+            )
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
+            )
+            buildConfigField(
+                "String",
+                "API_BASE_URL",
+                "\"${properties.getProperty("API_BASE_URL")}\""
+            )
+            buildConfigField(
+                "String",
+                "BEARER_TOKEN",
+                "\"${properties.getProperty("BEARER_TOKEN")}\""
+            )
+            buildConfigField(
+                "String",
+                "POSTER_BASE_URL",
+                "\"${properties.getProperty("POSTER_BASE_URL")}\""
+            )
+            buildConfigField(
+                "String",
+                "ACCOUNT_ID",
+                "\"${properties.getProperty("ACCOUNT_ID")}\""
             )
         }
     }
@@ -36,6 +87,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
