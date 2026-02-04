@@ -1,6 +1,5 @@
 package com.kosmasfn.movie.ui.component
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,12 +12,14 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
-@SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun YoutubeVideoPlayer(videoId: String, width: String = "1000") {
+fun YoutubeVideoPlayer(videoId: String) {
+
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    Column{
+    Column(
+        modifier = Modifier.fillMaxWidth().height(480.dp)
+    ){
         AndroidView(
             factory = { context ->
                 YouTubePlayerView(context).apply {
@@ -29,8 +30,7 @@ fun YoutubeVideoPlayer(videoId: String, width: String = "1000") {
                         }
                     })
                 }
-            },
-            modifier = Modifier.fillMaxWidth().height(480.dp)
+            }
         )
     }
 }
