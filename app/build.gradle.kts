@@ -48,11 +48,6 @@ android {
                 "POSTER_BASE_URL",
                 "\"${properties.getProperty("POSTER_BASE_URL")}\""
             )
-            buildConfigField(
-                "String",
-                "ACCOUNT_ID",
-                "\"${properties.getProperty("ACCOUNT_ID")}\""
-            )
         }
         release {
             isMinifyEnabled = false
@@ -74,11 +69,6 @@ android {
                 "String",
                 "POSTER_BASE_URL",
                 "\"${properties.getProperty("POSTER_BASE_URL")}\""
-            )
-            buildConfigField(
-                "String",
-                "ACCOUNT_ID",
-                "\"${properties.getProperty("ACCOUNT_ID")}\""
             )
         }
     }
