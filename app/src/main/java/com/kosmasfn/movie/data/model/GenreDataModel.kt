@@ -1,16 +1,13 @@
 package com.kosmasfn.movie.data.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class GenreDataModel(
-    @SerialName("genres")
+    @SerializedName("genres")
     val genres: List<GenreItemDataModel>?
 ) {
-    @Serializable
     data class GenreItemDataModel(
-        @SerialName("id")
+        @SerializedName("id")
         val id: Int?, val name: String?
     )
 }

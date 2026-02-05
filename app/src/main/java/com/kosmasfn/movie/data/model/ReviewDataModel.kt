@@ -1,62 +1,58 @@
 package com.kosmasfn.movie.data.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class ReviewDataModel(
-    @SerialName("id")
+    @SerializedName("id")
     val id: Int? = null,
 
-    @SerialName("page")
+    @SerializedName("page")
     val page: Int? = null,
 
-    @SerialName("results")
+    @SerializedName("results")
     val results: List<ReviewItemDataModel>? = null,
 
-    @SerialName("total_pages")
+    @SerializedName("total_pages")
     val totalPages: Int? = null,
 
-    @SerialName("total_results")
+    @SerializedName("total_results")
     val totalResults: Int? = null
 ) {
 
-    @Serializable
     data class ReviewItemDataModel(
-        @SerialName("author")
+        @SerializedName("author")
         val author: String? = null,
 
-        @SerialName("author_details")
+        @SerializedName("author_details")
         val authorDetails: AuthorDetailsDataModel? = null,
 
-        @SerialName("content")
+        @SerializedName("content")
         val content: String? = null,
 
-        @SerialName("created_at")
+        @SerializedName("created_at")
         val createdAt: String? = null,
 
-        @SerialName("id")
+        @SerializedName("id")
         val id: String? = null,
 
-        @SerialName("updated_at")
+        @SerializedName("updated_at")
         val updatedAt: String? = null,
 
-        @SerialName("url")
+        @SerializedName("url")
         val url: String? = null
     )
 
-    @Serializable
     data class AuthorDetailsDataModel(
-        @SerialName("avatar_path")
+        @SerializedName("avatar_path")
         val avatarPath: String? = null,
 
-        @SerialName("name")
+        @SerializedName("name")
         val name: String? = null,
 
-        @SerialName("rating")
+        @SerializedName("rating")
         val rating: Int? = null,
 
-        @SerialName("username")
+        @SerializedName("username")
         val username: String? = null
     )
 }
