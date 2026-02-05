@@ -1,65 +1,61 @@
 package com.kosmasfn.movie.data.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class MovieDataModel(
-    @SerialName("page")
+    @SerializedName("page")
     val page: Int? = null,
 
-    @SerialName("results")
+    @SerializedName("results")
     var results: List<MovieItemDataModel>? = null,
 
-    @SerialName("total_pages")
-    val total_pages: Int? = null,
+    @SerializedName("total_pages")
+    val totalPages: Int? = null,
 
-    @SerialName("total_results")
-    val total_results: Int? = null
+    @SerializedName("total_results")
+    val totalResults: Int? = null
 ) {
-    @Serializable
     data class MovieItemDataModel(
-        @SerialName("adult")
+        @SerializedName("adult")
         val adult: Boolean? = null,
 
-        @SerialName("backdrop_path")
-        val backdrop_path: String? = null,
+        @SerializedName("backdrop_path")
+        val backdropPath: String? = null,
 
-        @SerialName("genre_ids")
-        val genre_ids: List<Int>? = null,
+        @SerializedName("genre_ids")
+        val genreIds: List<Int>? = null,
 
-        @SerialName("id")
+        @SerializedName("id")
         val id: Int? = null,
 
-        @SerialName("original_language")
-        val original_language: String? = null,
+        @SerializedName("original_language")
+        val originalLanguage: String? = null,
 
-        @SerialName("original_title")
-        val original_title: String? = null,
+        @SerializedName("original_title")
+        val originalTitle: String? = null,
 
-        @SerialName("overview")
+        @SerializedName("overview")
         val overview: String? = null,
 
-        @SerialName("popularity")
+        @SerializedName("popularity")
         val popularity: Double? = null,
 
-        @SerialName("poster_path")
-        val poster_path: String? = null,
+        @SerializedName("poster_path")
+        val posterPath: String? = null,
 
-        @SerialName("release_date")
-        val release_date: String? = null,
+        @SerializedName("release_date")
+        val releaseDate: String? = null,
 
-        @SerialName("title")
+        @SerializedName("title")
         val title: String? = null,
 
-        @SerialName("video")
+        @SerializedName("video")
         val video: Boolean? = null,
 
-        @SerialName("vote_average")
-        val vote_average: Double? = null,
+        @SerializedName("vote_average")
+        val voteAverage: Double? = null,
 
-        @SerialName("vote_count")
-        val vote_count: Int? = null
-
+        @SerializedName("vote_count")
+        val voteCount: Int? = null
     )
 }

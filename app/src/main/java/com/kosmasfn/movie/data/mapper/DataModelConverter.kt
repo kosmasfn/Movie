@@ -20,26 +20,26 @@ fun GenreDataModel.GenreItemDataModel.toDomainModel(): GenreDomainModel.GenreIte
 fun MovieDataModel.toDomainModel(): MovieDomainModel = MovieDomainModel(
     this.page ?: 0,
     this.results?.map { it.toDomainModel() } ?: listOf(),
-    this.total_pages ?: 0,
-    this.total_results ?: 0,
+    this.totalPages ?: 0,
+    this.totalResults ?: 0,
 )
 
 fun MovieDataModel.MovieItemDataModel.toDomainModel(): MovieDomainModel.MovieItemDomainModel =
     MovieDomainModel.MovieItemDomainModel(
         this.adult ?: false,
-        this.backdrop_path ?: "",
-        this.genre_ids ?: listOf(),
+        this.backdropPath ?: "",
+        this.genreIds ?: listOf(),
         this.id ?: 0,
-        this.original_language ?: "",
-        this.original_title ?: "",
+        this.originalLanguage ?: "",
+        this.originalTitle ?: "",
         this.overview ?: "",
         this.popularity ?: 0.0,
-        this.poster_path ?: "",
-        this.release_date ?: "",
+        this.posterPath ?: "",
+        this.releaseDate ?: "",
         this.title ?: "",
         this.video ?: false,
-        this.vote_average ?: 0.0,
-        this.vote_count ?: 0
+        this.voteAverage ?: 0.0,
+        this.voteCount ?: 0
     )
 
 fun TrailerDataModel.toDomainModel(): TrailerDomainModel = TrailerDomainModel(
