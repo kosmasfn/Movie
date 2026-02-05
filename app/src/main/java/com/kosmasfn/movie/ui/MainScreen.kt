@@ -13,17 +13,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.kosmasfn.movie.ui.component.Loading
 import com.kosmasfn.movie.ui.genre.GenreTabs
 import com.kosmasfn.movie.ui.movie.MovieListScreen
+import com.kosmasfn.movie.utils.showMessage
 
 @Composable
 fun MainScreen(
     paddingValues: PaddingValues,
     viewModel: MainViewModel = hiltViewModel()
 ) {
+
+    val context = LocalContext.current
+
     val genreState by viewModel.genre.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState(false)
     val errorMessage by viewModel.errorMessage.collectAsState("")
@@ -55,12 +60,6 @@ fun MainScreen(
 
         if (isLoading) Loading()
 
-        if (errorMessage.isNotEmpty()) {
-            Text(
-                text = errorMessage,
-                color = Color.Red,
-                modifier = Modifier.padding(16.dp)
-            )
-        }
+        if (errorMessage.isNotEmpty()) context.showMessage(errorMessage)
     }
 }
